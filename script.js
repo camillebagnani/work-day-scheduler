@@ -1,6 +1,22 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+var today = dayjs();
+$('#currentDay').text(today.format('dddd, MMMM D'));
+
+var description = document.querySelectorAll(".description");
+var saveButton = document.querySelector(".saveBtn")
+
+var saved = localStorage.getItem("saved");
+
+description.textContent = saved;
+
+saveButton.addEventListener("click", function(){
+    description.textContent = saved;
+    localStorage.setItem("saved", saved);
+  })
+
+
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -9,6 +25,7 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   //
+
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -21,3 +38,31 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+// var workHours = [
+//   {time:9,
+//   id: "hour-9"},
+//   {time:10,
+//   id: "hour-10"},
+//   {time:11,
+//   id: "hour-11"},
+//   {time: 12,
+//   id: "hour-12"},
+//   {time: 1,
+//   id: "hour-1"},
+//   {time: 2,
+//   id: "hour-2"},
+//   {time: 3,
+//   id: "hour-3"},
+//   {time: 4,
+//   id: "hour-4"},
+//   {time: 5,
+//   id: "hour-5"}];
+
+//   var now = today.format('HH:mm:ss');
+//   console.log("the time is " + now);
+
+//   setInterval(currentTime, 1000);
+//   function currentTime() {
+//     now;
+//   }
