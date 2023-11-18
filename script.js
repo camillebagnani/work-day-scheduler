@@ -24,33 +24,89 @@ $('#currentDay').text(today.format('dddd, MMMM D'));
 //   console.log(textInput)
 // });
 
+var workHours = [
+  {
+    time: "9AM",
+    id: "#hour-9",
+    now: dayjs()
+  },
+  {
+    time: "10AM",
+    id: "#hour-10",
+    now: dayjs()
+  },
+  {
+    time: "11AM",
+    id: "#hour-11",
+    now: dayjs()
+  },
+  {
+    time: "12PM",
+    id: "#hour-12",
+    now: dayjs()
+  },
+  {
+    time: "1PM",
+    id: "#hour-1",
+    now: dayjs()
+  },
+  {
+    time: "2PM",
+    id: "#hour-2",
+    now: dayjs()
+  },
+  {
+    time: "3PM",
+    id: "#hour-3",
+    now: dayjs()
+  },
+  {
+    time: "4PM",
+    id: "#hour-4",
+    now: dayjs()
+  },
+  {
+    time: "5PM",
+    id: "#hour-5",
+    now: dayjs()
+  }];
 
 var saveButton = $(".container-lg");
 
-var saved = localStorage.getItem("saved") || ""
+var saved9 = localStorage.getItem("9AM")
+$("#hour-9").children("textarea").text(saved9);
 
-saveButton.click(function(event) {
+var saved10 = localStorage.getItem("10AM")
+$("#hour-10").children("textarea").text(saved10);
+
+function savedText() {
+  for (var i = 0; i < workHours.length; i++) {
+    var saved = localStorage.getItem(workHours[i].time)
+    $(workHours[i].id).children("textarea").text(saved);
+  }
+}
+savedText();
+
+saveButton.click(function (event) {
   event.preventDefault();
   if ($(event.target).hasClass("btn") || $(event.target).hasClass("fas")) {
-    console.log("who is caroling outside?")
     var description;
-    var workHour;
+    var currentWorkHour;
     if ($(event.target).hasClass("btn")) {
       description = $(event.target).siblings(".description").val();
-      workHour = $(event.target).siblings(".hour").text();
+      currentWorkHour = $(event.target).siblings(".hour").text();
 
     }
     if ($(event.target).hasClass("fas")) {
       description = $(event.target).parent().siblings(".description").val();
-      workHour = $(event.target).parent().siblings(".hour").text();
+      currentWorkHour = $(event.target).parent().siblings(".hour").text();
     }
-
-
-
-    localStorage.setItem(workHour, description);
-    console.log(workHour)
+    localStorage.setItem(currentWorkHour, description);
+    console.log(currentWorkHour)
   }
 })
+
+
 
 
 // $(function () {
@@ -75,25 +131,7 @@ saveButton.click(function(event) {
   // TODO: Add code to display the current date in the header of the page.
 // });
 
-// var workHours = [
-//   {time:9,
-//   id: "hour-9"},
-//   {time:10,
-//   id: "hour-10"},
-//   {time:11,
-//   id: "hour-11"},
-//   {time: 12,
-//   id: "hour-12"},
-//   {time: 1,
-//   id: "hour-1"},
-//   {time: 2,
-//   id: "hour-2"},
-//   {time: 3,
-//   id: "hour-3"},
-//   {time: 4,
-//   id: "hour-4"},
-//   {time: 5,
-//   id: "hour-5"}];
+
 
 //   var now = today.format('HH:mm:ss');
 //   console.log("the time is " + now);
