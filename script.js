@@ -4,88 +4,72 @@
 var today = dayjs();
 $('#currentDay').text(today.format('dddd, MMMM D'));
 
-// var saveBtn = $(".saveBtn");
-// var textArea = $("textarea");
-
-// // Check if a value exists in local storage
-// var storedValue = localStorage.getItem("textInput");
-// if (storedValue) {
-//   textArea.val(storedValue);
-// } else {
-//   textArea.val(""); // Set an empty string as the inital value if no stored value exists
-// }
-
-
-// saveBtn.on("click", function (event) {
-//   event.preventDefault();
-
-//   var textInput = textArea.val();
-//   localStorage.setItem("textInput", textInput)
-//   console.log(textInput)
-// });
-
 var workHours = [
   {
     time: "9AM",
     id: "#hour-9",
-    now: dayjs()
+    timeBlock: 8
   },
   {
     time: "10AM",
     id: "#hour-10",
-    now: dayjs()
+    timeBlock: 9
   },
   {
     time: "11AM",
     id: "#hour-11",
-    now: dayjs()
+    timeBlock: 10
   },
   {
     time: "12PM",
     id: "#hour-12",
-    now: dayjs()
+    timeBlock: 11
   },
   {
     time: "1PM",
     id: "#hour-1",
-    now: dayjs()
+    timeBlock: 12
   },
   {
     time: "2PM",
     id: "#hour-2",
-    now: dayjs()
+    timeBlock: 13
   },
   {
     time: "3PM",
     id: "#hour-3",
-    now: dayjs()
+    timeBlock: 14
   },
   {
     time: "4PM",
     id: "#hour-4",
-    now: dayjs()
+    timeBlock: 15
   },
   {
     time: "5PM",
     id: "#hour-5",
-    now: dayjs()
+    timeBlock: 16
   }];
 
 var saveButton = $(".container-lg");
 
-var saved9 = localStorage.getItem("9AM")
-$("#hour-9").children("textarea").text(saved9);
-
-var saved10 = localStorage.getItem("10AM")
-$("#hour-10").children("textarea").text(saved10);
-
-function savedText() {
+function checkHour() {
   for (var i = 0; i < workHours.length; i++) {
     var saved = localStorage.getItem(workHours[i].time)
     $(workHours[i].id).children("textarea").text(saved);
+    console.log(workHours[i])
+
+    if (workHours[i].timeBlock === dayjs().hour()) {
+      $(workHours[i].id).addClass("present").removeClass("past future")
+    } else if (workHours[i].timeBlock < dayjs().hour()) {
+      $(workHours[i].id).addClass("past").removeClass("present future")
+    } else if (workHours[i].timeBlock > dayjs().hour()) {
+      $(workHours[i].id).addClass("future").removeClass("present past")
+    }
   }
 }
-savedText();
+
+checkHour();
 
 saveButton.click(function (event) {
   event.preventDefault();
@@ -109,7 +93,7 @@ saveButton.click(function (event) {
 
 
 
-// $(function () {
+$(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -139,4 +123,4 @@ saveButton.click(function (event) {
 //   setInterval(currentTime, 1000);
 //   function currentTime() {
 //     now;
-//   }
+  })
