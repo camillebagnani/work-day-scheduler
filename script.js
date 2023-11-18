@@ -12,47 +12,47 @@ var workHours = [
   {
     time: "9AM",
     id: "#hour-9",
-    timeBlock: 8
+    timeBlock: 9
   },
   {
     time: "10AM",
     id: "#hour-10",
-    timeBlock: 9
+    timeBlock: 10
   },
   {
     time: "11AM",
     id: "#hour-11",
-    timeBlock: 10
+    timeBlock: 11
   },
   {
     time: "12PM",
     id: "#hour-12",
-    timeBlock: 11
+    timeBlock: 12
   },
   {
     time: "1PM",
     id: "#hour-1",
-    timeBlock: 12
+    timeBlock: 13
   },
   {
     time: "2PM",
     id: "#hour-2",
-    timeBlock: 13
+    timeBlock: 14
   },
   {
     time: "3PM",
     id: "#hour-3",
-    timeBlock: 14
+    timeBlock: 15
   },
   {
     time: "4PM",
     id: "#hour-4",
-    timeBlock: 15
+    timeBlock: 16
   },
   {
     time: "5PM",
     id: "#hour-5",
-    timeBlock: 16
+    timeBlock: 17
   }];
 
 var saveButton = $(".container-lg");
