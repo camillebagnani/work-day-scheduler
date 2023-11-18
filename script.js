@@ -4,20 +4,56 @@
 var today = dayjs();
 $('#currentDay').text(today.format('dddd, MMMM D'));
 
-var description = document.querySelectorAll(".description");
-var saveButton = document.querySelector(".saveBtn")
+// var saveBtn = $(".saveBtn");
+// var textArea = $("textarea");
 
-var saved = localStorage.getItem("saved");
+// // Check if a value exists in local storage
+// var storedValue = localStorage.getItem("textInput");
+// if (storedValue) {
+//   textArea.val(storedValue);
+// } else {
+//   textArea.val(""); // Set an empty string as the inital value if no stored value exists
+// }
 
-description.textContent = saved;
 
-saveButton.addEventListener("click", function(){
-    description.textContent = saved;
-    localStorage.setItem("saved", saved);
-  })
+// saveBtn.on("click", function (event) {
+//   event.preventDefault();
+
+//   var textInput = textArea.val();
+//   localStorage.setItem("textInput", textInput)
+//   console.log(textInput)
+// });
 
 
-$(function () {
+var saveButton = $(".container-lg");
+
+var saved = localStorage.getItem("saved") || ""
+
+saveButton.click(function(event) {
+  event.preventDefault();
+  if ($(event.target).hasClass("btn") || $(event.target).hasClass("fas")) {
+    console.log("who is caroling outside?")
+    var description;
+    var workHour;
+    if ($(event.target).hasClass("btn")) {
+      description = $(event.target).siblings(".description").val();
+      workHour = $(event.target).siblings(".hour").text();
+
+    }
+    if ($(event.target).hasClass("fas")) {
+      description = $(event.target).parent().siblings(".description").val();
+      workHour = $(event.target).parent().siblings(".hour").text();
+    }
+
+
+
+    localStorage.setItem(workHour, description);
+    console.log(workHour)
+  }
+})
+
+
+// $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -37,7 +73,7 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-});
+// });
 
 // var workHours = [
 //   {time:9,
